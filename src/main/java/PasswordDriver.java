@@ -16,11 +16,11 @@ public class PasswordDriver {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		String password = JOptionPane.showInputDialog(frame, "Please enter a password to verify:  ", "Simple Password Verification Tool v" + Password.version, JOptionPane.WARNING_MESSAGE);
-		Password newPass = new Password();
-			
+		Password newPass = new Password(password);
+		
 		// Pressing cancel causes program to exit gracefully
 		if(!(password == null)) {
-			JOptionPane.showMessageDialog(frame, newPass.verifyPass(password));
+			JOptionPane.showMessageDialog(frame, newPass.verifyPass());
 		} else {
 			System.out.println("Exiting.");
 			System.exit(0);

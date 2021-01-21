@@ -15,25 +15,25 @@ Simple Password Verification Tool
 Setting Up Testing Environment in Eclipse:
 - Maven (create a new Maven Project)
 - JUnit (Maven dependency junit-dep-4.8.2)
-- AssertJ</br>
+- AssertJ
 
-1) Ensure Maven project in Eclipse has valid pom.xml file (Right Click --> Configure --> Convert to Maven project if needed), and JUnit listed under Maven Dependencies.</br>
-2) Ensure maven compiler is set to correct JDK in pom.xml properties section:</br>
-     <maven.compiler.source>11</maven.compiler.source></br>
-     <maven.compiler.target>11</maven.compiler.target></br>
-3) Keep Java classes in /main/java and JUnit tests in /test/java</br>
+1) Ensure Maven project in Eclipse has valid pom.xml file (Right Click --> Configure --> Convert to Maven project if needed), and JUnit listed under Maven Dependencies.
+2) Ensure maven compiler is set to correct JDK in pom.xml properties section:
+     <maven.compiler.source>11</maven.compiler.source>
+     <maven.compiler.target>11</maven.compiler.target>
+3) Keep Java classes in /main/java and JUnit tests in /test/java
 4) Ensure Maven's junit-dep and correct version (4.8.2) are set in pom.xml under dependencies
-5) Right click pom.xml --> Run As "Maven Build"... entering "clean install" under Goal.</br>
-6) Test JAR build in target directory using:</br>
-	java -cp PasswordVerifyTesting-0.0.1-SNAPSHOT.jar PasswordDriver</br>
+5) Right click pom.xml --> Run As "Maven Build"... entering "clean install" under Goal.
+6) Test JAR build in target directory using:
+	java -cp PasswordVerifyTesting-0.0.1-SNAPSHOT.jar PasswordDriver
 
 Manual Compilation:
-1) Navigate to directory containing PasswordDriver.java and Password.java</br>
-2) Compile with 'javac PasswordDriver.java' and press enter.</br>
+1) Navigate to directory containing PasswordDriver.java and Password.java
+2) Compile with 'javac PasswordDriver.java' and press enter.
 
 Running the code:
-1) Run with 'java PasswordDriver'</br>
-2) Type a password and press enter.</br>
+1) Run with 'java PasswordDriver'
+2) Type a password and press enter.
 
 Valid Password
 - The password must be at least 8 characters in length
@@ -44,8 +44,13 @@ Valid Password
 Design assumptions:
 In iteration 1, there are only three possible outcomes: a string returned expressing a valid password, a string returned expressing an invalid password, or the user presses cancel to exit the program gracefully.
 
+Iteration 2 Design decisions:  Certain Java password verification tools use custom Exceptions to catch specific password errors and propogate them to the user. Exceptions should be used for exceptional cases, so I'll prefer to account for all password validity cases within the verifyPass() function and prevent exceptions where possible.
+
+
 TODO: Write test cases for regex input and other functions.
 
 Version History:</br>
-1.0		Initial commit. Added JavaX Swing dependency, created README.</br>
-1.1		Added Iteration 1 classes, PasswordDriver and Password and created logic to verify password. Added JUnit and Maven environment build tests for input.</br>
+1.0		Initial commit. Added JavaX Swing dependency, created README.
+1.1		Added Iteration 1 classes, PasswordDriver and Password and created logic to verify password. Added JUnit and Maven environment build tests for input.
+1.2 	In iteration 2, we notify the user with reasons why the password is not acceptable using conditionals. Added constructor to Password. Update JUnit tests to test proper output when a password is not acceptable.
+		Updated JUnit test cases to assert proper output from Password function.
