@@ -62,3 +62,5 @@ Version History:
 		
 1.4		Incorporate stricter password requirements into verifyPass and verifyAdminPass functions with regex. Added java.util.regex.Pattern as a dependency, and add multiple JUnit tests to ensure
 regex is working as expected. Prefix password verification window title with (admin) or (user). Add message instructions to user on what buttons mean.
+
+1.5		Refactored Button Event listener into private inner class.

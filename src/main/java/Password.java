@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 public class Password {
 
-	public static String version = "1.4";
+	public static final String version = "1.4";
 
 	private String pass;
 	public Password(String pass) {
@@ -67,6 +67,7 @@ public class Password {
 			if (pass.length() < 10) {
 				verifyString += "\nThe password must be at least 10 characters in length";
 			}
+			
 			if (numberCounter < 1) {
 				verifyString += "\nThe password must contain at least 1 number";
 			}

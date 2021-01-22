@@ -3,7 +3,7 @@ import org.junit.Test;
 
 public class PasswordTest {
 
-    //	The password must be at least 8 characters in length
+    //	The password must be at least 10 characters in length
     //	The password must contain at least 1 letter
     //	The password must contain at least 1 number
 	@Test
@@ -20,7 +20,8 @@ public class PasswordTest {
 	
 	// Passwords for Admin users must be at least 13 characters in length
     // Passwords for Admin users must contain a special character ('!', '@', '#', '$', '%', '^', '&', or '*')
-	@Test public void testVerifyAdminPass() {
+	@Test
+	public void testVerifyAdminPass() {
 		
 		Password adminPass1 = new Password("password1234!@#");
 		assertEquals("The password is accepted", adminPass1.verifyAdminPass());
@@ -39,7 +40,6 @@ public class PasswordTest {
 		
 		Password adminPass6 = new Password("password1234!");
 		assertEquals("The password is not accepted\nPasswords for Admin users must contain at least 3 special characters ('!', '@', '#', '$', '%', '^', '&', or '*')", adminPass6.verifyAdminPass());
-		
 		
 		// Passwords now require at least 3 special characters
 		Password adminPass7 = new Password("password123");
