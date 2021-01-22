@@ -9,18 +9,41 @@
  * at least 1 number
  * 
  * Requirements (iteration 2):  informs the user why the password is invalid.
+ * Requirements (iteration 3):  processing special character requirement for verifyAdminPass()
  *
  */
 
+import java.util.regex.Pattern;
+
 public class Password {
 
-	public static String version = "1.2";
+	public static String version = "1.3";
 
 	private String pass;
 	public Password(String pass) {
 		this.pass = pass;
 	}
 	
+	public String verifyAdminPass() {
+		
+		Pattern regex = Pattern.compile("[!@#$%^&*]");
+		String verifyString = "";
+		if(regex.matcher(pass).find() && pass.length() >= 13) {
+			verifyString = "The password is accepted";
+		} else {
+			verifyString = "The password is not accepted";
+			if(pass.length() < 13) {
+				verifyString += "\nPasswords for Admin users must be at least 13 characters in length";
+			}
+			
+			if(!(regex.matcher(pass).find())) {
+				verifyString += "\nPasswords for Admin users must contain a special character ('!', '@', '#', '$', '%', '^', '&', or '*')";
+			}
+			
+		}
+		
+		return verifyString;
+	}
 	
 	public String verifyPass() {
 		int numberCounter = 0;
@@ -55,3 +78,4 @@ public class Password {
 	}
 
 }
+	

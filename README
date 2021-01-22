@@ -15,7 +15,6 @@ Simple Password Verification Tool
 Setting Up Testing Environment in Eclipse:
 - Maven (create a new Maven Project)
 - JUnit (Maven dependency junit-dep-4.8.2)
-- AssertJ
 
 1) Ensure Maven project in Eclipse has valid pom.xml file (Right Click --> Configure --> Convert to Maven project if needed), and JUnit listed under Maven Dependencies.
 2) Ensure maven compiler is set to correct JDK in pom.xml properties section:
@@ -35,22 +34,26 @@ Running the code:
 1) Run with 'java PasswordDriver'
 2) Type a password and press enter.
 
-Valid Password
+Valid Password (Normal User, Iteration 3)
 - The password must be at least 8 characters in length
 - The password must contain at least 1 letter
 - The password must contain at least 1 number
 
+Valid Password (Admin User, Iteration 3)
+- Passwords for Admin users must be at least 13 characters in length
+- Passwords for Admin users must contain a special characters ('!', '@', '#', '$', '%', '^', '&', or '*')
 
 Design assumptions:
 In iteration 1, there are only three possible outcomes: a string returned expressing a valid password, a string returned expressing an invalid password, or the user presses cancel to exit the program gracefully.
 
 Iteration 2 Design decisions:  Certain Java password verification tools use custom Exceptions to catch specific password errors and propogate them to the user. Exceptions should be used for exceptional cases, so I'll prefer to account for all password validity cases within the verifyPass() function and prevent exceptions where possible.
 
+Iteration 3 Design decisions: Use Swing frame to allow user to choose between "Admin" and "User" using JButtons and an ActionListener. Process "User" password through verifyPass() function, and "Admin" password through verifyAdminPass() function. Use regex to match special characters. 
 
-TODO: Write test cases for regex input and other functions.
-
-Version History:</br>
+Version History:
 1.0		Initial commit. Added JavaX Swing dependency, created README.
 1.1		Added Iteration 1 classes, PasswordDriver and Password and created logic to verify password. Added JUnit and Maven environment build tests for input.
 1.2 	In iteration 2, we notify the user with reasons why the password is not acceptable using conditionals. Added constructor to Password. Update JUnit tests to test proper output when a password is not acceptable.
 		Updated JUnit test cases to assert proper output from Password function.
+1.3		Import Pattern from regex package to check for special characters. Modularize Swing GUI components into function. Updated build dependency to include java.awt.event* packages.
+		Add JUnit tests to verify regex is working in verifyAdminPass() function output.
