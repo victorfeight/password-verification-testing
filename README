@@ -34,14 +34,14 @@ Running the code:
 1) Run with 'java PasswordDriver'
 2) Type a password and press enter.
 
-Valid Password (Normal User, Iteration 3)
-- The password must be at least 8 characters in length
+Valid Password (Normal User, iteration 4):
+- The password must be at least 10 characters in length
 - The password must contain at least 1 letter
 - The password must contain at least 1 number
 
-Valid Password (Admin User, Iteration 3)
+Valid Password (Admin User, Iteration 4)
 - Passwords for Admin users must be at least 13 characters in length
-- Passwords for Admin users must contain a special characters ('!', '@', '#', '$', '%', '^', '&', or '*')
+- Passwords for Admin users must contain at least 3 special characters ('!', '@', '#', '$', '%', '^', '&', or '*')
 
 Design assumptions:
 In iteration 1, there are only three possible outcomes: a string returned expressing a valid password, a string returned expressing an invalid password, or the user presses cancel to exit the program gracefully.
@@ -50,6 +50,8 @@ Iteration 2 Design decisions:  Certain Java password verification tools use cust
 
 Iteration 3 Design decisions: Use Swing frame to allow user to choose between "Admin" and "User" using JButtons and an ActionListener. Process "User" password through verifyPass() function, and "Admin" password through verifyAdminPass() function. Use regex to match special characters. 
 
+Iteration 4 Design decisions: As I have separated out the logic between Normal and Admin password functions, I modified conditionals within verifyPass and verifyAdminPass as per updated requirements. 
+
 Version History:
 1.0		Initial commit. Added JavaX Swing dependency, created README.
 1.1		Added Iteration 1 classes, PasswordDriver and Password and created logic to verify password. Added JUnit and Maven environment build tests for input.
@@ -57,3 +59,6 @@ Version History:
 		Updated JUnit test cases to assert proper output from Password function.
 1.3		Import Pattern from regex package to check for special characters. Modularize Swing GUI components into function. Updated build dependency to include java.awt.event* packages.
 		Add JUnit tests to verify regex is working in verifyAdminPass() function output.
+		
+1.4		Incorporate stricter password requirements into verifyPass and verifyAdminPass functions with regex. Added java.util.regex.Pattern as a dependency, and add multiple JUnit tests to ensure
+regex is working as expected. Prefix password verification window title with (admin) or (user). Add message instructions to user on what buttons mean.

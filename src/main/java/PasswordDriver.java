@@ -1,4 +1,4 @@
-/* 
+/** 
  *  PasswordDriver.java
  *  Program description: Read in a password string,
  *  If the password is valid, inform the user that their password is accepted via a graphical message.
@@ -11,11 +11,12 @@
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PasswordDriver  {
+public class PasswordDriver {
 
 	private static JFrame passwordFrame = new JFrame("Password Input Dialog");
 	
@@ -32,10 +33,12 @@ public class PasswordDriver  {
 		
 		// Add buttons to JPanel, and JPanel to JFrame
 		JPanel panel = new JPanel();
+		JLabel label = new JLabel("Select between Admin password verify and Normal user verifier");
+		panel.add(label);
 		panel.add(adminButton);
 		panel.add(normalButton);
 		buttonFrame.getContentPane().add(panel);		
-		buttonFrame.setSize(200, 100);
+		buttonFrame.setSize(400, 100);
 		buttonFrame.setVisible(true);
 		
         // Run verifyAdminPass() on 'Admin' button press

@@ -10,14 +10,15 @@
  * 
  * Requirements (iteration 2):  informs the user why the password is invalid.
  * Requirements (iteration 3):  processing special character requirement for verifyAdminPass()
- *
+ * Requirements (iteration 4): Admin users must now include at least 3 special characters,
+ * 				Passwords for regular users must now be at least 10 characters in length
  */
 
 import java.util.regex.Pattern;
 
 public class Password {
 
-	public static String version = "1.3";
+	public static String version = "1.4";
 
 	private String pass;
 	public Password(String pass) {
@@ -26,7 +27,8 @@ public class Password {
 	
 	public String verifyAdminPass() {
 		
-		Pattern regex = Pattern.compile("[!@#$%^&*]");
+		// Iteration 4) Updated regex pattern to match 3 or more occurrences of special characters
+		Pattern regex = Pattern.compile("[!@#$%^&*]{3,}");
 		String verifyString = "";
 		if(regex.matcher(pass).find() && pass.length() >= 13) {
 			verifyString = "The password is accepted";
@@ -37,9 +39,8 @@ public class Password {
 			}
 			
 			if(!(regex.matcher(pass).find())) {
-				verifyString += "\nPasswords for Admin users must contain a special character ('!', '@', '#', '$', '%', '^', '&', or '*')";
-			}
-			
+				verifyString += "\nPasswords for Admin users must contain at least 3 special characters ('!', '@', '#', '$', '%', '^', '&', or '*')";
+			}	
 		}
 		
 		return verifyString;
@@ -56,14 +57,15 @@ public class Password {
 			}
 		}
 
+		// iteration 4) updated to 10 minimum character length
 		String verifyString = "";
-		if (pass.length() >= 8 && numberCounter >= 1 && letterCounter >= 1) {
+		if (pass.length() >= 10 && numberCounter >= 1 && letterCounter >= 1) {
 			verifyString = "The password is accepted";
 		} else {
 			verifyString = "The password is not accepted";
 
-			if (pass.length() < 8) {
-				verifyString += "\nThe password must be at least 8 characters in length";
+			if (pass.length() < 10) {
+				verifyString += "\nThe password must be at least 10 characters in length";
 			}
 			if (numberCounter < 1) {
 				verifyString += "\nThe password must contain at least 1 number";
@@ -77,5 +79,4 @@ public class Password {
 		return verifyString;
 	}
 
-}
-	
+}	
